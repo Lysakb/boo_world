@@ -4,8 +4,8 @@ const Schema = mongoose.Schema;
 const commentSchema = new Schema({
   text: {
     type: String,
-    required: true,
   },
+
   mbti: {
     type: String,
     enum: [
@@ -48,6 +48,7 @@ const commentSchema = new Schema({
       "9w1",
     ],
   },
+  
   zodiac: {
     type: String,
     enum: [
@@ -66,6 +67,7 @@ const commentSchema = new Schema({
     ],
   },
   likes: Number,
+
   createdAt: {
     type: Date,
     default: Date.now,
