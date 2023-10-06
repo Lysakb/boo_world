@@ -6,9 +6,8 @@ const { MongoMemoryServer } = require("mongodb-memory-server");
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Create a new instance of the MongoDB memory server
 const mongod = new MongoMemoryServer();
-let server; // Declare server variable
+let server; 
 
 mongod
   .start()
@@ -22,7 +21,6 @@ mongod
         useUnifiedTopology: true,
       });
 
-      // Handle MongoDB connection events
       const db = mongoose.connection;
 
       db.on("error", (err) => {
@@ -35,7 +33,7 @@ mongod
 
       db.once("disconnected", () => {
         console.info("Database Disconnected");
-        server.close(); // Close the server if the database disconnects
+        server.close(); 
       });
     } catch (error) {
       console.error("Error starting the server:", error);
@@ -52,7 +50,6 @@ app.set("view engine", "ejs");
 // routes
 app.use("/", require("./routes/profile")());
 
-// Export the server object
 server = app.listen(port, () => {
   console.log("Express started. Listening on %s", port);
 });
